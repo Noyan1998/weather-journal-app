@@ -15,8 +15,8 @@ function performAction(e) {
   .then(function(data) {
         let date = new Date(data.dt * 1000)
         let date_str = date.getFullYear() + '/' + (date.getMonth()+1) + '/' + date.getDate();
-        postData('/add', {temperature: data.main.temp, date: date_str, userResponse: userResponse});
-        updateUI('/all');
+        postData('/addWeather', {temperature: data.main.temp, date: date_str, userResponse: userResponse});
+        updateUI();
       })
 };
 
@@ -50,8 +50,8 @@ const postData = async (url = '', data = {}) => {
 };
 
 
-const updateUI = async(url = '') => {
-  const req = await fetch(url);
+const updateUI = async() => {
+  const req = await fetch('/all');
   try {
     const allData = await req.json();
     document.getElementById('date').innerHTML = allData[0].date;
