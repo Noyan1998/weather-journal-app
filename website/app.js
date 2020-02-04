@@ -54,6 +54,7 @@ const updateUI = async() => {
   const req = await fetch('/all');
   try {
     const allData = await req.json();
+    console.log(allData);
     document.getElementById('date').innerHTML = allData[0].date;
     document.getElementById('temp').innerHTML = allData[0].temperature;
     document.getElementById('content').innerHTML = allData[0].userResponse;
